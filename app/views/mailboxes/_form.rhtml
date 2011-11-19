@@ -1,0 +1,16 @@
+<%= error_messages_for 'mailbox' %>
+
+<!--[form:mailbox]-->
+<p><label for="mailbox_login">Логин</label><br/>
+<%= text_field 'mailbox', 'login'  %></p>
+
+<p><label for="mailbox_password">Пароль</label><br/>
+<%= text_field 'mailbox', 'password', {'style' => 'font-family: monospace;'}  %></p>
+
+<p><label for="mailbox_alias">Почтовый домен</label><br/>
+<%= text_field 'mailbox', 'alias'  %></p>
+
+<p><label for="mailbox_info">Номер счета / дополнительная информация</label><br/>
+<%= text_field 'mailbox', 'info'  %></p>
+<!--[eoform:mailbox]-->
+

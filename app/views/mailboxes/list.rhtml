@@ -1,0 +1,31 @@
+<h1>Список почтовых ящиков</h1>
+
+<table>
+  <thead><tr>
+  <% for column in Mailbox.columns_to_show %>
+    <th><%= column.human_name %></th>
+  <% end %>
+  </tr></thead>
+  
+<% for mailbox in @mailboxes %>
+  <tr id="mbox-<%= mailbox.id %>">
+  <% for column in Mailbox.columns_to_show %>
+    <td><%=h mailbox.send(column.name) %></td>
+  <% end %>
+    <td class="controls"><%= link_to 'Показать', :action => 'show', :id => mailbox %></td>
+    <td class="controls"><%= link_to 'Изменить', :action => 'edit', :id => mailbox %></td>
+    <td class="controls"><%= link_to_remote 'Удалить',
+        :url => { :action => 'destroy', :id => mailbox.id },
+        :success => update_element_function( 'mbox-' + mailbox.id.to_s,
+            :action => :remove) %></td>
+    
+  </tr>
+<% end %>
+</table>
+
+<%= link_to 'Далее', { :page => @mailbox_pages.current.previous } if @mailbox_pages.current.previous %>
+<%= link_to 'Назад', { :page => @mailbox_pages.current.next } if @mailbox_pages.current.next %> 
+
+<br />
+
+<%= link_to 'Создать новый ящик', :action => 'new' %>

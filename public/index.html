@@ -1,0 +1,94 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+  <head>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+    <title>elcom.ru</title>
+    <style type="text/css" media="screen">
+        @import "stylesheets/default.css";
+    </style>
+    <script type="text/javascript" src="javascripts/prototype.js"></script>
+    <script type="text/javascript" src="javascripts/effects.js"></script>
+    <script type="text/javascript">
+      function about() {
+        if (Element.empty('about-content')) {
+          new Ajax.Updater('about-content', 'rails_info/properties', {
+            method:     'get',
+            onFailure:  function() {Element.classNames('about-content').add('failure')},
+            onComplete: function() {new Effect.BlindDown('about-content', {duration: 0.25})}
+          });
+        } else {
+          new Effect[Element.visible('about-content') ? 
+            'BlindUp' : 'BlindDown']('about-content', {duration: 0.25});
+        }
+      }
+      
+      window.onload = function() {
+        $('search-text').value = '';
+        $('search').onsubmit = function() {
+          $('search-text').value = 'site:rubyonrails.org ' + $F('search-text');
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <div id="page">
+      <div id="sidebar">
+        <ul id="sidebar-items">
+          <li>
+            <form id="search" action="http://www.google.com/search" method="get">
+              <input type="hidden" name="hl" value="en" />
+              <input type="text" id="search-text" name="q" value="site:rubyonrails.org " />
+              <input type="submit" value="Search" /> the Rails site
+            </form>
+          </li>
+        
+          <li>
+            <h3>Join the community</h3>
+            <ul class="links">
+              <li><a href="http://www.rubyonrails.org/">Ruby on Rails</a></li>
+              <li><a href="http://weblog.rubyonrails.org/">Official weblog</a></li>
+              <li><a href="http://lists.rubyonrails.org/">Mailing lists</a></li>
+              <li><a href="http://wiki.rubyonrails.org/rails/pages/IRC">IRC channel</a></li>
+              <li><a href="http://wiki.rubyonrails.org/">Wiki</a></li>
+              <li><a href="http://dev.rubyonrails.org/">Bug tracker</a></li>
+            </ul>
+          </li>
+          
+          <li>
+            <h3>Browse the documentation</h3>
+            <ul class="links">
+              <li><a href="http://api.rubyonrails.org/">Rails API</a></li>
+              <li><a href="http://www.ruby-doc.org/stdlib/">Ruby standard library</a></li>
+              <li><a href="http://www.ruby-doc.org/core/">Ruby core</a></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+
+      <div id="content">
+        <div id="header">
+          <h1>elcom.ru</h1>
+        </div>
+
+        <div id="about">
+          <h3><a href="rails_info/properties" onclick="about(); return false">About your application&rsquo;s environment</a></h3>
+          <div id="about-content" style="display: none"></div>
+        </div>
+
+        <div id="actions">
+          <h3>Абоненты электронной почты</h3>
+          <ul>
+            <li><a href="mailboxes/info">Просмотр информации о ящике</a></li>
+            <li><a href="mailboxes/new">Добавить почтовый ящик</a></li>
+            <li><a href="mailboxes/edit">Редактировать почтовый ящик</a></li>
+            <li><a href="mailboxes/delete">Удалить почтовый ящик</a></li>
+          </ul>
+        </div>        
+
+      </div>
+      
+      <div id="footer">&nbsp;</div>
+    </div>
+  </body>
+</html>

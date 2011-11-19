@@ -1,0 +1,9 @@
+<h1>Изменить ящик</h1>
+
+<%= start_form_tag :action => 'update', :id => @mailbox %>
+  <%= render :partial => 'form' %>
+  <%= submit_tag 'Изменить' %>
+<%= end_form_tag %>
+
+<%= link_to 'Показать', :action => 'show', :id => @mailbox %> |
+<%= link_to 'Назад', :action => 'list' %>

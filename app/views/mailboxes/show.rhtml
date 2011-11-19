@@ -1,0 +1,8 @@
+<% for column in Mailbox.columns_to_show %>
+<p>
+  <b><%= column.human_name %>:</b> <%=h @mailbox.send(column.name) %>
+</p>
+<% end %>
+
+<%= link_to 'Изменить', :action => 'edit', :id => @mailbox %> |
+<%= link_to 'Назад', :action => 'list' %>
